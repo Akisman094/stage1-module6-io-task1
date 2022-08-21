@@ -30,6 +30,9 @@ public class FileReader
         } catch (IOException e)
         {
             profile = null;
+        } catch (Exception ex)
+        {
+            profile = null;
         }
 
         return profile;
