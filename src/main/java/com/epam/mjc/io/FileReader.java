@@ -11,15 +11,15 @@ public class FileReader
 
     public Profile getDataFromFile(File file)
     {
-        Profile profile;
+        Profile profile = null;
 
         try (InputStream inputStream = new FileInputStream(file))
         {
             //Read file and save lines
             String fileContent = new String(inputStream.readAllBytes());
-            String[] lines = fileContent.split("\r\n");
+            String[] lines = fileContent.split("\\R");
 
-            //Parse lines
+            //Parse lines and get the data
             String name = lines[0].split(" ")[1];
             Integer age = Integer.parseInt(lines[1].split(" ")[1]);
             String email = lines[2].split(" ")[1];
@@ -29,10 +29,7 @@ public class FileReader
             profile = new Profile(name, age, email, phone);
         } catch (IOException e)
         {
-            profile = null;
-        } catch (Exception ex)
-        {
-            profile = null;
+            //Some exception handling
         }
 
         return profile;
